@@ -58,6 +58,34 @@ const router = new VueRouter({
       path: '*',
       redirect: 'error-404',
     },
+    {
+      path: '/register-vessel',
+      name: 'register-vessel',
+      component: () => import('@/views/Register/RegisterVessel.vue'),
+      meta: {
+        pageTitle: 'Register Vessel',
+        breadcrumb: [
+          {
+            text: 'Register Vessel',
+            active: true,
+          },
+        ],
+      },
+    },
+    {
+      path: '/register-company',
+      name: 'register-company',
+      component: () => import('@/views/Register/RegisterCompany.vue'),
+      meta: {
+        pageTitle: 'Register Company',
+        breadcrumb: [
+          {
+            text: 'Register Company',
+            active: true,
+          },
+        ],
+      },
+    },
   ],
 })
 

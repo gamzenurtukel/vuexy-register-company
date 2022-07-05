@@ -9,4 +9,20 @@ export default [
     route: 'second-page',
     icon: 'FileIcon',
   },
+  {
+    title: 'Register',
+    icon: 'CheckSquareIcon',
+    children: [
+      {
+        title: 'Vessel',
+        route: 'register-vessel',
+        icon: 'CircleIcon',
+      },
+      {
+        title: 'Company',
+        route: 'register-company',
+        icon: 'CircleIcon',
+      },
+    ]
+  },
 ]

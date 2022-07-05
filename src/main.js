@@ -2,6 +2,7 @@ import Vue from 'vue'
 import { ToastPlugin, ModalPlugin } from 'bootstrap-vue'
 import VueCompositionAPI from '@vue/composition-api'
 
+
 import router from './router'
 import store from './store'
 import App from './App.vue'
@@ -27,6 +28,7 @@ require('@core/scss/core.scss')
 require('@/assets/scss/style.scss')
 
 Vue.config.productionTip = false
+
 
 new Vue({
   router,
