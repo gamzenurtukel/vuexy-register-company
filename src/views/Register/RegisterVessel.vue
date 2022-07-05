@@ -127,8 +127,7 @@
             title="Add Vessel">
             <b-form ref="form" @submit.stop.prevent="handleSubmit" @submit="onSubmit">
                 <b-container fluid>
-                    <b-row class="mb-1">
-                       
+                    <b-row class="mb-1">                       
                         <b-col cols="6">
                             <b-form-group label="Vessel Name" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
@@ -208,8 +207,6 @@
                 </b-row>
             </b-form>
         </b-modal>
-
-
     </div>
 </template>
 <style>
