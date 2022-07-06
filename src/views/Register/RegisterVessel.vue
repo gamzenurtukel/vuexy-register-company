@@ -370,8 +370,7 @@ export default {
 
     methods: {
         onSubmit(event) {
-            event.preventDefault()
-            alert(JSON.stringify(this.form))
+            event.preventDefault()            
         },
         checkFormValidity() {
             const valid = this.$refs.form.checkValidity()
@@ -390,8 +389,6 @@ export default {
                 this.$bvModal.hide('modal-prevent-closing')
             })
         },
-
-
     },
 }
 
