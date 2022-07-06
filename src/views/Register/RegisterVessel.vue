@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mt-3">
-            <b-card-group deck >
+            <b-card-group deck>
 
                 <b-card bg-variant="light" no-body class="overflow-hidden" style="padding-top:10px ;">
                     <b-row align-h="center">
@@ -20,7 +20,7 @@
                     </b-row>
                 </b-card>
 
-                <b-card bg-variant="light" no-body class="overflow-hidden" style="padding-top:10px ;" >
+                <b-card bg-variant="light" no-body class="overflow-hidden" style="padding-top:10px ;">
                     <b-row>
                         <b-col>
                             <b-card-body class="text-center">
@@ -86,14 +86,20 @@
                         </b-col>
                     </b-row>
                 </b-form>
-                <br />
+
                 <hr size="5" />
                 <br />
+                <label for="">Show </label>
+                <b-dropdown text="10" class="m-2" variant="outline-primary">
+                    <b-dropdown-item href="#">10</b-dropdown-item>
+                    <b-dropdown-item href="#">20</b-dropdown-item>
+                    <b-dropdown-item href="#">30</b-dropdown-item>
+                </b-dropdown>
 
                 <b-form @submit="onSubmit" :inline="true" style="float:right; margin-bottom: 20px;">
                     <label id="b-form-g3" class="mb-2 mr-sm-2 mb-sm-0" for="inline-form-input-name" content-cols="10"
                         label-cols="4" label-align="right">Search</label>
-                    <b-form-input class="mb-2 mr-sm-2 mb-sm-0" id="search" type="text" placeholder="Search" >
+                    <b-form-input class="mb-2 mr-sm-2 mb-sm-0" id="search" type="text" placeholder="Search">
                     </b-form-input>
                     <b-button type="submit" @click="modalShow = !modalShow" variant="primary">Add
                         New
@@ -102,24 +108,50 @@
                 </b-form>
                 <br />
 
-                <div>
-                    <b-table responsive :table-variant="tableVariant" striped hover :items="items" :bordered="bordered"
-                        :head-variant="headVariant" :striped="striped" :fields="fields" :selectTable="selectTable">
-                        <template slot="checkbox" slot-scope="row">
-                            <b-form-group>
-                                <b-form-checkbox v-model="row.item.selected" variant="outline-secondary" class="mr-1">
-                                </b-form-checkbox>
-                            </b-form-group>
-                        </template>
-                        <template slot="status" slot-scope="{ item: { status }}">
+
+                <b-table :responsive="sm" :table-variant="tableVariant" striped hover :items="items"
+                    :bordered="bordered" :head-variant="headVariant" :striped="striped" :fields="fields"
+                    :selectTable="selectTable" :small="small" :fixed="fixed" small>
+                    <template v-slot:cell(actions)="data">
+                        <div>
+                            <b-dropdown size="sm" variant="link" toggle-class="text-decoration-none" no-caret>
+                                <template #button-content>
+                                    <span>
+                                        <more-vertical-icon size="1.5x" class="custom-class"></more-vertical-icon>
+                                    </span>
+                                </template>
+                                <b-dropdown-item href="#">
+                                    <span>
+                                        <edit2-icon size="1.5x" class="custom-class"></edit2-icon> Edit
+                                    </span>
+
+                                </b-dropdown-item>
+                                <b-dropdown-item href="#">
+                                    <span>
+                                        <trash-icon size="1.5x" class="custom-class"></trash-icon> Delete
+                                    </span>
+                                </b-dropdown-item>
+                            </b-dropdown>
+
+                        </div>
+
+                    </template>
+                    <template v-slot:cell(isActive)="data">
+                        <div>
                             <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted"
                                 unchecked-value="not_accepted">
-                                I accept the terms and use
                             </b-form-checkbox>
-                        </template>
-                    </b-table>
-                </div>
+                        </div>
+                    </template>
+
+                </b-table>
+
+
             </b-card>
+            <div class="mt-3" style="float: right;">
+                <b-pagination v-model="currentPage" pills :total-rows="rows"></b-pagination>
+            </div>
+
         </b-card>
 
 
@@ -127,7 +159,7 @@
             title="Add Vessel">
             <b-form ref="form" @submit.stop.prevent="handleSubmit" @submit="onSubmit">
                 <b-container fluid>
-                    <b-row class="mb-1">                       
+                    <b-row class="mb-1">
                         <b-col cols="6">
                             <b-form-group label="Vessel Name" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
@@ -198,7 +230,7 @@
                 <b-row>
                     <b-col></b-col>
                     <b-col lg="2">
-                        <b-form-group >
+                        <b-form-group>
                             <b-button type="submit" variant="primary">
                                 Add
                             </b-button>
@@ -218,8 +250,8 @@ b-form-input input .search {
 
 <script>
 
-import { BTable, BFormGroup, BForm, BFormCheckbox, BFormSelect, label, BCard, BFormInput, BButton, BContainer, BRow, BCol, BFormTextarea, BCardGroup, BCardText, BCardBody } from 'bootstrap-vue'
-import { UserIcon } from 'vue-feather-icons'
+import { BTable, BFormGroup, BForm, BFormCheckbox, BDropdown, BDropdownItem, BFormSelect, BPagination, BCard, BFormInput, BButton, BContainer, BRow, BCol, BFormTextarea, BCardGroup, BCardText, BCardBody } from 'bootstrap-vue'
+import { UserIcon, MoreVerticalIcon, Edit2Icon, TrashIcon } from 'vue-feather-icons'
 
 export default {
     components: {
@@ -239,15 +271,23 @@ export default {
         UserIcon,
         BCardText,
         BCardBody,
-        label
-
+        BPagination,
+        BDropdown,
+        BDropdownItem,
+        MoreVerticalIcon,
+        TrashIcon,
+        Edit2Icon
     },
 
     data() {
         return {
+            rows: 100,
+            currentPage: 5,
+
             selected: [],
             tableSelected: [],
             modalShow: false,
+            transports: [],
 
             computed: {
                 selected() {
@@ -273,8 +313,7 @@ export default {
             fields: [
 
                 {
-                    key: 'isActive',
-                    label: 'is Active',
+                    key: 'isActive',                  
 
 
                 },
@@ -304,20 +343,17 @@ export default {
                     label: 'VESSEL PHONE',
                     sortable: true,
                 },
+
                 {
-                    key: 'checkbox',
-                    label: '',
-                    class: 'd-none d-lg-table-cell'
-                },
-                {
-                    key: 'status', label: '',
-                    class: 'd-none d-lg-table-cell'
+                    key: 'actions',
+                    label: 'Actions'
+
                 }
             ],
 
 
             items: [
-                { status: '', isActive: true, vessel_name: 'Dickerson', c_legal_name: 'Macdonald', contact_person: 'AFLEX', vessel_type: 'LPG Tanker', vessel_phone: '05318236362' },
+                { vessel_name: 'Dickerson', c_legal_name: 'Macdonald', contact_person: 'AFLEX', vessel_type: 'LPG Tanker', vessel_phone: '05318236362' },
 
             ],
 
@@ -344,21 +380,21 @@ export default {
             const valid = this.$refs.form.checkValidity()
             this.nameState = valid
             return valid
-        },  
+        },
         handleSubmit() {
-        // Exit when the form isn't valid
-        if (!this.checkFormValidity()) {
-          return
-        }
-        // Push the name to submitted names
-        this.submittedNames.push(this.name)
-        // Hide the modal manually
-        this.$nextTick(() => {
-          this.$bvModal.hide('modal-prevent-closing')
-        })
-      },   
-        
-        
+            // Exit when the form isn't valid
+            if (!this.checkFormValidity()) {
+                return
+            }
+            // Push the name to submitted names
+            this.submittedNames.push(this.name)
+            // Hide the modal manually
+            this.$nextTick(() => {
+                this.$bvModal.hide('modal-prevent-closing')
+            })
+        },
+
+
     },
 }
 
@@ -366,9 +402,9 @@ export default {
 </script>
 <style >
 .custom-class {
-    background-color:#EEECFD;
+    background-color: #EEECFD;
     margin: 20px;
-    padding:10px;
+    padding: 10px;
     border-radius: 50% 50%;
     font-size: 21px;
 }

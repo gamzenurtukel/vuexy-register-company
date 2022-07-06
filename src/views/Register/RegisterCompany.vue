@@ -99,23 +99,29 @@
                             <b-form-group id="b-form-g3" label="Statüs" label-for="input-3">
                                 <b-form-select v-model="selected" :options="options" id="input-3"></b-form-select>
                             </b-form-group>
-
                         </b-col>
                     </b-row>
                 </b-form>
                 <br />
                 <hr size="5" />
                 <br />
+                <label for="">Show </label>
+                <b-dropdown text="10" class="m-2" variant="outline-primary">
+                    <b-dropdown-item href="#">10</b-dropdown-item>
+                    <b-dropdown-item href="#">20</b-dropdown-item>
+                    <b-dropdown-item href="#">30</b-dropdown-item>
+                </b-dropdown>
 
                 <b-form @submit="onSubmit" :inline="true" style="float:right; margin-bottom: 20px;">
                     <label id="b-form-g3" class="mb-2 mr-sm-2 mb-sm-0" for="inline-form-input-name" content-cols="10"
                         label-cols="4" label-align="right">Search</label>
                     <b-form-input class="mb-2 mr-sm-2 mb-sm-0" id="search" type="text" placeholder="Search" required>
                     </b-form-input>
-                    <b-dropdown variant="outline-primary" class="m-2" text="Export"
-                        style="margin-right: 15px; min-width: 150px;">
+                    <b-dropdown variant="outline-primary" class="m-2" style="margin-right: 15px; min-width: 150px;">
                         <template #button-content>
-                            <check-square-icon size="1.5x" class="custom-class"></check-square-icon>
+                            <span>
+                                <check-square-icon size="1.5x" class="custom-class"></check-square-icon> Export
+                            </span>
                         </template>
                         <b-dropdown-item>
                         </b-dropdown-item>
@@ -129,20 +135,53 @@
                 <br />
 
                 <div>
-                    <b-table responsive="true" :table-variant="tableVariant" striped hover :items="items"
-                        :bordered="bordered" :head-variant="headVariant" :striped="striped" :fields="fields"
+                    <b-table :responsive="sm" :table-variant="tableVariant" striped hover :items="items"
+                        :bordered="bordered" :head-variant="headVariant" :striped="striped" :fields="fields" small
                         :selectTable="selectTable">
                         <template v-slot:cell(actions)="data">
-                            <div class="dropdown">
-                                <more-vertical-icon size="1.5x" class="custom-class" fill="#7367F0">
-                            </more-vertical-icon>
-
+                            <div>
+                                <b-dropdown size="lg" variant="link" toggle-class="text-decoration-none" no-caret>
+                                    <template #button-content>
+                                        <span>
+                                            <more-vertical-icon size="1.5x" class="custom-class"></more-vertical-icon>
+                                        </span>
+                                    </template>
+                                    <b-dropdown-item href="#">
+                                        <span>
+                                            <edit2-icon size="1.5x" class="custom-class"></edit2-icon> Edit
+                                        </span>
+                                    </b-dropdown-item>
+                                    <b-dropdown-item href="#">
+                                        <span>
+                                            <trash-icon size="1.5x" class="custom-class"></trash-icon> Delete
+                                        </span>
+                                    </b-dropdown-item>
+                                </b-dropdown>
                             </div>
-                            
+                        </template>
+                        <template v-slot:cell(check)="data">
+                            <div>
+                                <b-form-checkbox id="checkbox-1" v-model="status" name="checkbox-1" value="accepted"
+                                    unchecked-value="not_accepted">
+                                </b-form-checkbox>
+                            </div>
+                        </template>
+                        <template v-slot:cell(c_legal_name)="data">
+                            <span >                                
+                                    <database-icon size="2x" class="custom-class" stroke="#7367F0"></database-icon> Maintanier                                                               
+                            </span>
+                        </template>
+                        <template v-slot:cell(contact)="data">
+                            <span class="badge rounded-pill badge-light-primary me-1">
+                                Active
+                            </span>
                         </template>
                     </b-table>
                 </div>
             </b-card>
+            <div class="mt-3" style="float: right;">
+                <b-pagination v-model="currentPage" pills :total-rows="rows"></b-pagination>
+            </div>
         </b-card>
 
 
@@ -283,7 +322,6 @@
                                             </b-form-input>
                                         </b-form-group>
                                     </b-col>
-
                                 </b-row>
                                 <div>
                                     <label> Birthday</label>
@@ -384,8 +422,8 @@
 </template>
 
 <script>
-import { BTable, BFormGroup, BForm, BFormCheckbox, BFormSelect, label, BFormDatepicker, BCard, BDropdownItem, BFormInput, BDropdown, BButton, BContainer, BRow, BCol, BFormTextarea, BCardGroup, BCardText, BCardBody, BTab, BTabs } from 'bootstrap-vue'
-import { UserIcon, UserPlusIcon, UserXIcon, UserCheckIcon, CheckSquareIcon, ApertureIcon, MoreVerticalIcon } from 'vue-feather-icons'
+import { BTable, BFormGroup, BForm, BFormCheckbox, BFormSelect, BPagination, BFormDatepicker, BCard, BBadge, BDropdownItem, BFormInput, BDropdown, BButton, BContainer, BRow, BCol, BFormTextarea, BCardGroup, BCardText, BCardBody, BTab, BTabs } from 'bootstrap-vue'
+import { UserIcon, UserPlusIcon, UserXIcon, UserCheckIcon, CheckSquareIcon,DatabaseIcon, MoreVerticalIcon, Edit2Icon, TrashIcon } from 'vue-feather-icons'
 
 export default {
     components: {
@@ -405,7 +443,6 @@ export default {
         UserIcon,
         BCardText,
         BCardBody,
-        label,
         UserPlusIcon,
         UserXIcon,
         UserCheckIcon,
@@ -415,17 +452,23 @@ export default {
         CheckSquareIcon,
         BDropdown,
         BDropdownItem,
-        MoreVerticalIcon
+        MoreVerticalIcon,
+        Edit2Icon,
+        TrashIcon,
+        BPagination,
+        BBadge,
+        DatabaseIcon
     },
 
     data() {
         return {
+            rows: 100,
+            currentPage: 5,
 
             selected: [],
             tableSelected: [],
             transports: [],
             modalShow: false,
-
 
             name: '',
             nameState: null,
@@ -440,43 +483,33 @@ export default {
             ],
 
             fields: [
-
                 {
-                    key: 'isActive',
-                    label: 'is Active',
-
+                    key: 'check'
 
                 },
                 {
-                    key: 'vessel_name',
-                    label: 'VESSEL NAME',
-                    sortable: true,
-
+                    key: 'id',
+                    label: 'ID',
                 },
                 {
                     key: 'c_legal_name',
-                    label: 'C LEGAL NAME',
+                    label: 'COMPANY LEGAL NAME',
                     sortable: true,
                 },
                 {
-                    key: 'contact_person',
-                    label: 'CONTACT PERSON',
+                    key: 'county',
+                    label: 'COUNTY',
                     sortable: true,
                 },
                 {
-                    key: 'vessel_type',
-                    label: 'VESSEL TYPE',
+                    key: 'company_type',
+                    label: 'COMPANY TYPE',
                     sortable: true,
                 },
                 {
-                    key: 'vessel_phone',
-                    label: 'VESSEL PHONE',
+                    key: 'contact',
+                    label: 'CONTACT',
                     sortable: true,
-                },
-                {
-                    key: 'checkbox',
-                    label: '',
-                    class: 'd-none d-lg-table-cell'
                 },
                 {
                     key: 'actions',
@@ -486,7 +519,7 @@ export default {
             ],
 
             items: [
-                { status: '', isActive: true, vessel_name: 'Dickerson', c_legal_name: 'Macdonald', contact_person: 'AFLEX', vessel_type: 'LPG Tanker', vessel_phone: '05318236362' },
+                { id: 'mrya Foster', county: 'Enterprise', company_type: 'Auto Debit' },
 
             ],
 
