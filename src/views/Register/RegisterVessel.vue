@@ -75,12 +75,12 @@
                         </b-col>
                         <b-col>
                             <b-form-group id="b-form-g2" label="Company Legal Name" label-for="input-3">
-                                <b-form-select v-model="selected" :options="options" id="input-2"></b-form-select>
+                                <b-form-select v-model="selected2" :options="options" id="input-2"></b-form-select>
                             </b-form-group>
                         </b-col>
                         <b-col>
                             <b-form-group id="b-form-g3" label="Vessel Type" label-for="input-3">
-                                <b-form-select v-model="selected" :options="options" id="input-3"></b-form-select>
+                                <b-form-select v-model="selected3" :options="options" id="input-3"></b-form-select>
                             </b-form-group>
 
                         </b-col>
@@ -132,9 +132,7 @@
                                     </span>
                                 </b-dropdown-item>
                             </b-dropdown>
-
                         </div>
-
                     </template>
                     <template v-slot:cell(isActive)="data">
                         <div>
@@ -143,7 +141,6 @@
                             </b-form-checkbox>
                         </div>
                     </template>
-
                 </b-table>
 
 
@@ -163,59 +160,59 @@
                         <b-col cols="6">
                             <b-form-group label="Vessel Name" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="vessel_name" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Invoice Country" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="invoice_county" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Vessel Type" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="vessel_type" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Vessel Contact" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="vessel_contact" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Vessel E-Mail" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="vessel_email" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Tax No" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="tax_no" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                         </b-col>
                         <b-col cols="6">
                             <b-form-group label="Company Legal Name" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-select id="name-input" v-model="selected" :options="options">
+                                <b-form-select id="name-input" v-model="selected7" :options="options">
                                 </b-form-select>
                             </b-form-group>
                             <b-form-group label="Invoice City" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="invoice_city" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Vessel Imo" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="vessel_imo" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Vessel Phone" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="vessel_phone" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Tax Department" label-align-lg="left" label-for="name-input"
                                 :state="nameState">
-                                <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                <b-form-input id="name-input" v-model="tax_department" :state="nameState" required>
                                 </b-form-input>
                             </b-form-group>
                             <b-form-group label="Invoice Address" label-align-lg="left" label-for="name-input"

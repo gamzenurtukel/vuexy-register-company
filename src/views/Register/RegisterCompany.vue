@@ -92,12 +92,12 @@
                         </b-col>
                         <b-col>
                             <b-form-group id="b-form-g2" label="Plan" label-for="input-3">
-                                <b-form-select v-model="selected" :options="options" id="input-2"></b-form-select>
+                                <b-form-select v-model="selected7" :options="options" id="input-2"></b-form-select>
                             </b-form-group>
                         </b-col>
                         <b-col>
                             <b-form-group id="b-form-g3" label="Statüs" label-for="input-3">
-                                <b-form-select v-model="selected" :options="options" id="input-3"></b-form-select>
+                                <b-form-select v-model="selected6" :options="options" id="input-3"></b-form-select>
                             </b-form-group>
                         </b-col>
                     </b-row>
@@ -197,59 +197,59 @@
                                     <b-col cols="6">
                                         <b-form-group label="Company Name" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="company_name" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Country" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="county" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Company Type" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="company_type" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Director Name" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="director_name1" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="E-Mail" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="email1" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Tax No" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="tax_no" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                     </b-col>
                                     <b-col cols="6">
                                         <b-form-group label="Company Legal Name" label-align-lg="left"
                                             label-for="name-input" :state="nameState">
-                                            <b-form-select id="name-input" v-model="selected" :options="options">
+                                            <b-form-select id="name-input" v-model="selected1" :options="options">
                                             </b-form-select>
                                         </b-form-group>
                                         <b-form-group label="City" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="city1" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Referance" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="referance" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Director Phone" label-align-lg="left"
                                             label-for="name-input" :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="director_phone" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Tax Department" label-align-lg="left"
                                             label-for="name-input" :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="tax_department" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Address" label-align-lg="left" label-for="name-input"
@@ -281,44 +281,44 @@
                                     <b-col cols="6">
                                         <b-form-group label="Director Name" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="director_name" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Phone" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="phone" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Email" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="email" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Director Name" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="director_name" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                     </b-col>
                                     <b-col cols="6">
                                         <b-form-group label="Title" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-select id="name-input" v-model="selected" :options="options">
+                                            <b-form-select id="name-input" v-model="selected2" :options="options">
                                             </b-form-select>
                                         </b-form-group>
                                         <b-form-group label="Personel Phone" label-align-lg="left"
                                             label-for="name-input" :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="personel_phone" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Personel Email" label-align-lg="left"
                                             label-for="name-input" :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="personel_email" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Password" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="password" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                     </b-col>
@@ -352,44 +352,44 @@
                                     <b-col cols="6">
                                         <b-form-group label="Bank Name" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="bank_name" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Account Number" label-align-lg="left"
                                             label-for="name-input" :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="account_number" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="City" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="city" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="IBAN" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="iban" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                     </b-col>
                                     <b-col cols="6">
                                         <b-form-group label="Account Type" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-select id="name-input" v-model="selected" :options="options">
+                                            <b-form-select id="name-input" v-model="selected3" :options="options">
                                             </b-form-select>
                                         </b-form-group>
                                         <b-form-group label="County" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-select id="name-input" v-model="selected" :options="options">
+                                            <b-form-select id="name-input" v-model="selected4" :options="options">
                                             </b-form-select>
                                         </b-form-group>
                                         <b-form-group label="Branch Code" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="branch_code" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                         <b-form-group label="Swift Code" label-align-lg="left" label-for="name-input"
                                             :state="nameState">
-                                            <b-form-input id="name-input" v-model="name" :state="nameState" required>
+                                            <b-form-input id="name-input" v-model="swift_code" :state="nameState" required>
                                             </b-form-input>
                                         </b-form-group>
                                     </b-col>
